@@ -1,0 +1,5 @@
+@use '@angular/material' as mat;
+
+
+$success-colors: mat.define-palette(mat.$green-palette, 400);
+$warning-colors: mat.define-palette(mat.$amber-palette, 400);

@@ -1,0 +1,13 @@
+Désolé de ne pas faire grande chose sur cette page 😖 mais l'idée est claire...on a le service de product-sotre...il a tous les actions CRUD
+<br>
+<hr>
+
+<ul *ngFor="let product of selectedProducts$ | async" class="d-flex flex-column">
+    <li>
+        {{product.title}} | Unit price : {{product.price}} | quantity : {{product.quantity}}
+    </li>
+</ul>
+
+<div>
+    total  : {{total$ | async | currency: 'EUR'}}
+</div>

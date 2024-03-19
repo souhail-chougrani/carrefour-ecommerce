@@ -1,1 +1,74 @@
-/* You can add global styles to this file, and also import other style files */
+// Custom Theming for Angular Material
+@use "@angular/material" as mat;
+@use "sass:map";
+@use "./theme/carrefour-palette.scss" as carrefour-palette;
+@import './theme/variables.scss';
+
+@import 'bootstrap/scss/bootstrap-reboot';
+@import 'bootstrap/scss/bootstrap-grid';
+
+@include mat.core();
+
+$carrefour-theme: mat.define-light-theme(
+  (
+    color: (
+      primary: mat.define-palette(carrefour-palette.$carrefour-blue-palette, 700, 200, 900),
+      accent: mat.define-palette(carrefour-palette.$carrefour-red-palette, 600, 100, 900),
+    ),
+    typography:mat.define-typography-config($font-family:'Poppins') ,
+  )
+);
+
+$merged-ecommerce-theme: map.deep-merge(
+  $carrefour-theme,
+  (
+    color: (
+      background: (
+        background: mat.get-color-from-palette(mat.get-color-from-palette(carrefour-palette.$carrefour-blue-palette, contrast),900),
+      ),
+    )
+  )
+);
+
+
+
+@include mat.all-component-themes($merged-ecommerce-theme);
+
+
+
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: 'Poppins', "Helvetica Neue", sans-serif;
+  background-color: white;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.link{
+  border-radius:8px;
+  &.active{
+      background: #b9ddff;
+      .mdc-list-item__content{
+          .mdc-list-item__primary-text{
+              color: #115ed4;
+              font-weight: 500;
+          }
+      }
+  }
+}
+
+.mat-badge-small.mat-badge-above .mat-badge-content {
+  top: 4px;
+}
+
+.mat-badge-small.mat-badge-overlap.mat-badge-after .mat-badge-content {
+  right: -18px;
+}

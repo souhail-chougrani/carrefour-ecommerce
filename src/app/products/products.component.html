@@ -1,0 +1,12 @@
+<div class="filter">
+    <mat-icon class="search-icon">search</mat-icon>
+    <input class="search" placeholder="Search..." />
+</div>
+<div class="m-4 d-flex flex-wrap justify-content-around align-content-center">
+    <ng-container *ngFor="let product of products$ | async">
+        <app-card-product [quantity]="getQuantity(product.id)" [product]="product"
+            [isProductAdded]="isProductAdded(product.id)" (addProduct)="addProduct($event)"
+            (addQuantity)="addQuantity($any($event))"
+            (removeQuantity)="removeQuantity($any($event))"></app-card-product>
+    </ng-container>
+</div>
